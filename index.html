@@ -25,6 +25,8 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             overflow: hidden;
+            position: fixed;
+            width: 100%;
             height: 100vh;
             margin: 0;
         }
@@ -57,6 +59,19 @@
         
         .active-tab { color: var(--primary); transform: translateY(-2px); }
         .tab-icon { transition: all 0.2s ease; }
+        * {
+          touch-action: manipulation;
+        }
+        
+        button, a, input, select {
+          touch-action: manipulation;
+          pointer-events: auto;
+        }
+        
+        body {
+          overscroll-behavior: none;
+        }
+
     </style>
 
     <script type="importmap">
@@ -185,8 +200,7 @@
             };
 
             const handleDelete = (id) => {
-                if(confirm('Xóa giao dịch này?')) {
-                    setTransactions(transactions.filter(t => t.id !== id));
+                setTransactions(transactions.filter(t => t.id !== id));
                 }
             };
 
